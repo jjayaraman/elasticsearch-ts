@@ -1,0 +1,23 @@
+{
+  "name": "search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/elasticsearch": "^5.0.40",
+    "@types/node": "^18.0.0",
+    "@types/uuid": "^8.3.4",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.2.1",
+    "uuid": "^8.3.2"
+  }
+}
