@@ -7,17 +7,11 @@ const client = new Client({
 });
 
 const elasticSearchUtils = new ElasticSearchUtils(client)
+const INDEX = 'car'
 
 describe('elasticsearch tests', () => {
 
-
-    it('should create a new elasticsearch record', async () => {
-        await elasticSearchUtils.create('mytestindex', 'my first dataset');
-
-    })
-
-    it('should search elasticsearch', async () => {
-        const index = 'car'
+    it('should return error index_not_found_exception', async () => {
         const query = {
             "bool": {
                 "must": [{
@@ -25,7 +19,31 @@ describe('elasticsearch tests', () => {
                 }]
             }
         }
-        const result = await elasticSearchUtils.search(index, query);
+
+        try {
+            const result = await elasticSearchUtils.search(INDEX, query);
+        } catch (error) {
+            console.log('w', error);
+            expect(error).toHaveProperty('statusCode', 404);
+        }
+    })
+
+    it('should create a new elasticsearch record', async () => {
+
+        const result = await elasticSearchUtils.create(INDEX, 'my first dataset');
+        console.log('result ', result);
+
+    })
+
+    it('should search elasticsearch', async () => {
+        const query = {
+            "bool": {
+                "must": [{
+                    "match_all": {}
+                }]
+            }
+        }
+        const result = await elasticSearchUtils.search(INDEX, query);
         console.log(JSON.stringify(result, null, 2));
 
     })

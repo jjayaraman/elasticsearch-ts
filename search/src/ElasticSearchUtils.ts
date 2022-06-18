@@ -7,13 +7,13 @@ export class ElasticSearchUtils {
     constructor(private client: Client) { }
 
 
-    create = (index: string, document: string): Promise<CreateResponse> => {
+    create = (index: string, document: string): Promise<any> => {
         const createRequest: CreateRequest = {
             id: uuidv4(),
             index,
             document
         }
-        return this.client.create(createRequest)
+        return this.client.indices.create(createRequest)
     }
 
 
