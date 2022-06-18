@@ -2,7 +2,7 @@ import { Client } from "@elastic/elasticsearch";
 import { CreateRequest, CreateResponse, SearchRequest, SearchResponse } from "@elastic/elasticsearch/lib/api/types";
 import { v4 as uuidv4 } from 'uuid';
 
-class ElasticsearchUtils {
+export class ElasticSearchUtils {
 
     constructor(private client: Client) { }
 
