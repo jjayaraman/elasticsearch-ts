@@ -7,7 +7,7 @@ const client = new Client({
 });
 
 const elasticSearchUtils = new ElasticSearchUtils(client)
-const INDEX = 'car'
+const INDEX = 'users'
 
 describe('elasticsearch tests', () => {
 
