@@ -7,7 +7,7 @@ const client = new Client({
 });
 
 const elasticSearchUtils = new ElasticSearchUtils(client)
-const INDEX = 'users'
+const INDEX = 'snp_financials'
 
 describe('elasticsearch tests', () => {
 
@@ -28,9 +28,9 @@ describe('elasticsearch tests', () => {
         }
     })
 
-    it('should create a new elasticsearch record', async () => {
+    it('should create a new elasticsearch index', async () => {
 
-        const result = await elasticSearchUtils.create(INDEX, 'my first dataset');
+        const result = await elasticSearchUtils.createIndex(INDEX);
         console.log('result ', result);
 
     })

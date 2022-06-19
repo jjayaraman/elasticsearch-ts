@@ -1,13 +1,20 @@
 import { Client } from "@elastic/elasticsearch";
-import { CreateRequest, CreateResponse, IndexRequest, IndicesCreateRequest, SearchRequest, SearchResponse } from "@elastic/elasticsearch/lib/api/types";
+import { CreateRequest, CreateResponse, ExistsRequest, IndexRequest, IndicesCreateRequest, SearchRequest, SearchResponse } from "@elastic/elasticsearch/lib/api/types";
 import { v4 as uuidv4 } from 'uuid';
 
 export class ElasticSearchUtils {
 
     constructor(private client: Client) { }
 
+    indexExists = async (index: string): boolean => {
+        const existsRequest: ExistsRequest = {
+            index
+        }
+        return await this.client.exists(existsRequest);
+    }
 
-    createIndex = (index: string, document: string): Promise<any> => {
+
+    createIndex = (index: string): Promise<any> => {
         const indicesCreateRequest: IndicesCreateRequest = {
             index,
         }
