@@ -6,7 +6,8 @@ import moment = require('moment');
 
 describe('Test suite to test ESQueryBuilder functionnalities', () => {
 
-    it('should be able to test against local ES', async () => {
+    // https://github.com/elastic/elasticsearch-js/issues/1712
+    it('should be able to sort asc/desc correctly', async () => {
 
         const client = new Client({
             node: 'http://localhost:9200'
