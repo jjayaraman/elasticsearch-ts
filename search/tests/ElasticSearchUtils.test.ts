@@ -35,6 +35,13 @@ describe('elasticsearch tests', () => {
 
     })
 
+    it('should add or update a new recod', async () => {
+        const data = { "name": "test" }
+        const result = await elasticSearchUtils.addOrupdate(INDEX, null, JSON.stringify(data));
+        console.log('result ', result);
+
+    })
+
     it('should search elasticsearch', async () => {
         const query = {
             "bool": {

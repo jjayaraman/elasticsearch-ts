@@ -6,9 +6,10 @@ export class ElasticSearchUtils {
 
     constructor(private client: Client) { }
 
-    indexExists = async (index: string): boolean => {
+    isExists = async (index: string, id: string): Promise<boolean> => {
         const existsRequest: ExistsRequest = {
-            index
+            index,
+            id
         }
         return await this.client.exists(existsRequest);
     }
@@ -22,7 +23,7 @@ export class ElasticSearchUtils {
     }
 
 
-    addOrupdate = (index: string, id: string, document: string): Promise<any> => {
+    addOrupdate = (index: string, id: string | null, document: string): Promise<any> => {
         const createRequest: IndexRequest = {
             index,
             id: id ? id : uuidv4(),
